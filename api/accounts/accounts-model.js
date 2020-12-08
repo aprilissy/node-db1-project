@@ -30,9 +30,10 @@ function create(account) {
 function update(id, account) {
  // UPDATE accounts SET title = 'foo', contents = 'bar'
  // WHERE id = 1;
- return db('accounts').update(account)
-  .then(([id]) => {
-    return db('accounts').where({ id }).first()
+ 
+ return db('accounts').where({ id }).update(account)
+  .then(() => {
+    return getByID(id)
   })
 }
 
